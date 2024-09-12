@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industrial Shop</title>
+    <link rel="stylesheet" href="homepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'DM Sans', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-color: #f4f4f4;
+        }
+       
+        .filters {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 15px 20px;
+            background: #ffffff;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .filters button, .filters select {
+            padding: 8px 15px;
+            cursor: pointer;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f8f8f8;
+        }
+
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            text-align: center;
+            position: relative;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .product-card h3 {
+            margin: 10px 0;
+            font-size: 1rem;
+            color: #333;
+        }
+
+        .product-price {
+            background-color: #ff4d4d;
+            color: white;
+            padding: 5px 10px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+        }
+
+        .add-to-cart-btn {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: #45a049;
+        }
+
+      
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 15px;
+        }
+
+        .pagination button {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .pagination button.active, .pagination button:hover {
+            background-color: #007bff;
+            color: white;
+            border-color: #007bff;
+        }
+
+
+        @media (max-width: 768px) {
+            header div {
+                padding: 20px;
+            }
+
+            header h1 {
+                font-size: 2rem;
+            }
+
+            .filters {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .filters button, .filters select {
+                margin: 5px 0;
+                width: 100%;
+            }
+
+            .pagination {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pagination button {
+                margin: 5px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="scroll-navbar">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="homepage.html">
+                        <img src="https://i.ibb.co/8rCZMJd/d1c27e8c477d6a4027efc4779abdc68c-1-removebg-preview.png" alt="Traveller Logo">
+                    </a>
+            </div>
+            <button class="scroll-mobile-menu-toggle" aria-label="Toggle Navigation">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="scroll-nav-links">
+              <li><a href="homepage.html">Home</a></li>
+              <li><a href="Checkout.html">Checkout</a></li>
+              <li class="scroll-right-side-item"><a href="cart.html">cart</a></li> 
+          </ul>
+        </div>
+    </header>
+
+
+    <div class="filters">
+        <select id="category-select">
+            <option value="">All Categories</option>
+            <option value="hammocks">Hammocks</option>
+            <option value="tents">Tents</option>
+            <option value="blankets">Blankets</option>
+            <option value="blankets">Blankets</option>
+           
+        </select>
+    </div>
+
+  
+    <div id="products-section" class="products-grid">
+      
+    </div>
+
+    
+    <div class="pagination">
+        <button id="page1" class="pagination-btn">1</button>
+        <button id="page2" class="pagination-btn">2</button>
+        <button id="page3" class="pagination-btn">3</button>
+    </div>
+
+    
+    <script>
+       
+        const productsData = {
+            1: [
+                {id: 1, img: '2images/p2.1.jpg', name: 'Ultralight Portable Backpacking Large Hammock', price: '$49', link: 'p1.html', category: 'hammocks'},
+                {id: 2, img: '2images/p5.1.jpg', name: 'Outdoor Camping Multifunctional Mosquito Net Hammock', price: '$69', link: 'p2.html', category: 'hammocks'},
+                {id: 3, img: '2images/p18.1.jpg', name: 'Lightweight Portable Pillow and Wearable Sleeping Bag', price: '$89', link: 'p3.html', category: 'blankets'},
+                {id: 4, img: '2images/p15.1.jpg', name: 'Luxury Family Outdoor Camping Waterproof Tent', price: '$499', link: 'p4.html', category: 'tents'},
+                {id: 5, img: '2images/p9.1.jpg', name: 'Ultralight Portable Waterproof Tent with Bed', price: '$129', link: 'p5.html', category: 'tents'},
+                {id: 6, img: '2images/p3.1.jpg', name: 'Outdoor Camping Car Side Awning Tent Sunshade SUV Car Tent', price: '$159', link: 'p6.html', category: 'tents'}
+            ],
+            2: [
+                {id: 7, img: '2images/p1.1.jpg', name: 'Canopy Design Beach Tent Sun Shade', price: '$89', link: 'p7.html', category: 'tents'},
+                {id: 8, img: '2images/p7.1.jpg', name: 'High Quality Camping Portable Hammock With Stand', price: '$129', link: 'p8.html', category: 'hammocks'},
+                {id: 9, img: '2images/p12.1.jpg', name: 'Customized Cutdoor Camping SUV Car Side Extended Canopy', price: '$199', link: 'p9.html', category: 'tents'},
+                {id: 10, img: '2images/p16.1.jpg', name: 'Outdoor Camping Blanket Waterproof Beach Picnic Mat', price: '$39', link: 'p10.html', category: 'blankets'},
+                {id: 11, img: '2images/p4.1.jpg', name: 'Outdoor Courtyard Wedding Party Event Canopy Tent', price: '$299', link: 'p11.html', category: 'tents'},
+                {id: 12, img: '2images/p6.1.jpg', name: 'Ultralight Portable Folding Nylon Custom Hammock', price: '$79', link: 'p12.html', category: 'hammocks'}
+            ],
+            3: [
+                {id: 13, img: '2images/p10.1.jpg', name: 'Aluminum Camping Folding Table', price: '$119', link: 'p13.html', category: 'camping'},
+                {id: 14, img: '2images/p11.1.jpg', name: 'Camping 0utdoor Portable Folding Fishing Chair', price: '$59', link: 'p14.html', category: 'camping'},
+                {id: 15, img: '2images/p13.1.jpg', name: 'SUV Extended Awning Portable Car Side Tent', price: '$149', link: 'p15.html', category: 'camping'},
+                {id: 16, img: '2images/p14.1.jpg', name: 'Car Rear Canopy Camping Equipment Suppliers', price: '$199', link: 'p16.html', category: 'camping'},
+                {id: 17, img: '2images/p17.1.jpg', name: 'Camping Travel Foldable Portable BBQ Tools Set', price: '$89', link: 'p17.html', category: 'camping'},
+                {id: 18, img: '2images/p8.4.jpg', name: 'Durable Quality Hiking Camping Hammock Tree Straps', price: '$29', link: 'p18.html', category: 'hammocks'}
+            ]
+        };
+
+       
+        function loadProducts(page, category = '') {
+            const productSection = document.getElementById('products-section');
+            productSection.innerHTML = ''; 
+
+            productsData[page].filter(product => !category || product.category === category).forEach(product => {
+                productSection.innerHTML += 
+                    `<a href="${product.link}" style="text-decoration: none; color: black;">
+                        <div class="product-card">
+                            <img src="${product.img}" alt="${product.name}">
+                            <h3>${product.name}</h3>
+                            <div class="product-price">${product.price}</div>
+                            <button class="add-to-cart-btn" data-product-id="${product.id}">Add to Cart</button>
+                        </div>
+                    </a>`;
+            });
+
+
+            document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+                button.addEventListener('click', addToCart);
+            });
+        }
+
+       
+        function addToCart(event) {
+            event.preventDefault(); 
+            const productId = event.target.getAttribute('data-product-id');
+            alert(`Product ID ${productId} added to cart!`);
+        }
+
+        
+        document.getElementById('category-select').addEventListener('change', (event) => {
+            const selectedCategory = event.target.value;
+            loadProducts(1, selectedCategory); 
+        });
+
+      
+        loadProducts(1);
+
+       
+        document.getElementById('page1').addEventListener('click', () => loadProducts(1));
+        document.getElementById('page2').addEventListener('click', () => loadProducts(2));
+        document.getElementById('page3').addEventListener('click', () => loadProducts(3));
+    </script>
+
+<footer>
+    <div class="footer-content">
+        <div class="logo">TRAVERLLER</div>
+        <ul class="footer-links">
+            <li><a href="aboutus.html">About Us</a></li>
+                <li><a href="Contact.html">Contact Us</a></li>
+                <li><a href="#">FAQs</a></li>
+        </ul>
+    </div>
+    <div class="social-icons">
+        <i class="fab fa-facebook-f"></i>
+        <i class="fab fa-twitter"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-youtube"></i>
+    </div>
+</footer>
+
+
+</body>
+</html>

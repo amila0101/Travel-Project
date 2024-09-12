@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap">
+    <title>About Us</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f4f4f4;
+        }
+        section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 8rem;
+            background-color: #ffffff;
+        }
+        .content {
+            max-width: 1200px;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: #000000;
+        }
+        p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        .home-icon {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .home-icon a {
+            color: #ffae00;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s ease-in-out;
+        }
+        .home-icon a:hover {
+            color: #eba742;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+        
+        @media (max-width: 768px) {
+            section {
+                padding: 2rem;
+            }
+            .text {
+                padding-right: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            p {
+                font-size: 0.9rem;
+            }
+            .home-icon {
+                margin-top: 10px;
+            }
+            .home-icon a {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            section {
+                padding: 1rem;
+                flex-direction: column;
+                text-align: center;
+            }
+            .content {
+                flex-direction: column;
+                align-items: center;
+            }
+            .text {
+                padding-right: 0;
+                margin-bottom: 1rem;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+            p {
+                font-size: 0.8rem;
+            }
+            .home-icon a {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <div class="content">
+            <div class="text">
+                <h1>About Us</h1>
+                <p>
+                    Traveller, founded in 2024, is a team of passionate professionals dedicated to providing top-tier traveling solutions.
+                </p>
+                <p>
+                    They believe in collaboration, creativity, and integrity, delivering exceptional experiences that exceed expectations. 
+            With years of experience and a commitment to continuous improvement, they prioritize customer focus, transparency, 
+            quality, and sustainability, fostering trust and respect.
+                </p>
+                <div class="home-icon">
+                    <a href="homepage.html" title="Go to Home"><i class="fas fa-home"></i></a>
+                    &nbsp; &nbsp;<a href="Contact.html" title="Go to Contact Us"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div>
+                <img src="https://i.ibb.co/jhX08qq/back.jpg" alt="About Us">
+            </div>
+        </div>
+    </section>
+</body>
+</html>
